@@ -35,7 +35,7 @@ namespace MyLocation002.Pages.Locations
             LocationsVM = new LocationsViewModel()
             {
                 Locations = new Location(),
-                Categories = _dbContext.Categories.ToList()
+                Categories = _dbContext.Categories.ToList() 
             };
 
             return Page();
