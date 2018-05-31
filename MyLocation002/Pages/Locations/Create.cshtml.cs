@@ -21,7 +21,7 @@ namespace MyLocation002.Pages.Locations
 
         public CreateModel(ApplicationDbContext dbContext)
         {
-            _dbContext = dbContext;
+            _dbContext = dbContext; 
         }
 
         [TempData]
