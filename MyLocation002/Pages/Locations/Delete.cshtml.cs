@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MyLocation002.Data;
 using MyLocation002.Data.Models;
+using System.Threading.Tasks;
 
 namespace MyLocation002.Pages.Locations
 {
@@ -29,7 +26,7 @@ namespace MyLocation002.Pages.Locations
                 return NotFound();
             }
 
-            Locations = await _dbContext.Locations.Include(w => w.Category).SingleOrDefaultAsync(w => w.Id == id);
+            Locations = await _dbContext.Locations.Include(w => w.Category).SingleOrDefaultAsync(w => w.Id == id).ConfigureAwait(false);
 
             if (Locations == null)
             {
@@ -49,13 +46,13 @@ namespace MyLocation002.Pages.Locations
                 return NotFound();
             }
 
-            Locations = await _dbContext.Locations.FindAsync(id);
+            Locations = await _dbContext.Locations.FindAsync(id).ConfigureAwait(false);
 
             if (Locations != null)
             {
                 _dbContext.Locations.Remove(Locations);
 
-                await _dbContext.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync().ConfigureAwait(false);
 
                 Message = "Item Was Deleted !";
             }

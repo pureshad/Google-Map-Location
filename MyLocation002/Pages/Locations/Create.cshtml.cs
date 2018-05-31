@@ -1,16 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GoogleMaps.LocationServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using MyLocation002.Data;
 using MyLocation002.Data.Models;
 using MyLocation002.ViewModel;
-using System.Device.Location;
-using GoogleMaps.LocationServices;
-using Microsoft.EntityFrameworkCore;
-using System.Threading;
-using Microsoft.AspNetCore.Authorization;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MyLocation002.Pages.Locations
 {
@@ -21,7 +17,7 @@ namespace MyLocation002.Pages.Locations
 
         public CreateModel(ApplicationDbContext dbContext)
         {
-            _dbContext = dbContext; 
+            _dbContext = dbContext;
         }
 
         [TempData]
@@ -35,7 +31,7 @@ namespace MyLocation002.Pages.Locations
             LocationsVM = new LocationsViewModel()
             {
                 Locations = new Location(),
-                Categories = _dbContext.Categories.ToList() 
+                Categories = _dbContext.Categories.ToList()
             };
 
             return Page();
@@ -50,7 +46,7 @@ namespace MyLocation002.Pages.Locations
 
             _dbContext.Locations.Add(LocationsVM.Locations);
 
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync().ConfigureAwait(false);
 
             Message = "New Location Has Been Added!";
 
@@ -66,7 +62,7 @@ namespace MyLocation002.Pages.Locations
                     Name = LocationsVM.Locations.Name,
                     Adress = LocationsVM.Locations.Adress
                 },
-                Categories = await _dbContext.Categories.ToListAsync()
+                Categories = await _dbContext.Categories.ToListAsync().ConfigureAwait(false)
             };
 
             _googleLocation = new GoogleLocationService();
@@ -78,7 +74,6 @@ namespace MyLocation002.Pages.Locations
 
             LocationsVM.Locations.Longitude = point.Longitude;
             LocationsVM.Locations.Latitude = point.Latitude;
-
 
             return Page();
         }
