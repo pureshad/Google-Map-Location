@@ -1,0 +1,44 @@
+﻿@page
+@model MyLocation002.Pages.Categories.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+<br />
+<h2 class="col-sm-offset-5">Create</h2>
+
+<hr />
+
+<form method="post">
+    <div class="form-border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="Categories.Name" class="custom-label"></label>
+            </div>
+            <div class="col-sm-4">
+                <input asp-for="Categories.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Categories.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="Categories.DisplayCategory" class="custom-label"></label>
+            </div>
+            <div class="col-sm-4">
+                <input asp-for="Categories.DisplayCategory" class="form-control" />
+            </div>
+            <span asp-validation-for="Categories.DisplayCategory" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-success" />
+            <a asp-page="Index" class="btn btn-primary">Back to list</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

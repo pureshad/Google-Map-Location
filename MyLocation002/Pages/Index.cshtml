@@ -1,0 +1,25 @@
+﻿@page
+@model MyLocation002.Pages.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h2 class="col-sm-offset-5">Select Menu</h2>
+
+<form method="get">
+    <div class="col-sm-offset-3">
+        <div class="row form-group">
+            <div class="col-sm-4">
+                <a asp-page="Categories/Index" class="btn btn-primary">
+                    <img src="~/images/category.jpeg" style="width:200px; height:200px;" />
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a asp-page="Locations/Index" class="btn btn-primary">
+                    <img src="~/images/Googlemap.jpg" style="width:200px; height:200px;" />
+                </a>
+            </div>
+        </div>
+    </div>
+</form>

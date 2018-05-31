@@ -1,0 +1,75 @@
+﻿@page
+@model MyLocation002.Pages.Locations.EditModel
+@using MyLocation002.Extentions
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2 class="col-sm-offset-5">Edit</h2>
+
+<form method="post">
+    <div class="form-border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <input type="hidden" asp-for="LocationsVM.Locations.Id" />
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="LocationsVM.Locations.Name" class="custom-label"></label>
+            </div>
+            <div class="col-sm-4">
+                <input asp-for="LocationsVM.Locations.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="LocationsVM.Locations.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="LocationsVM.Locations.Adress" class="custom-label"></label>
+            </div>
+            <div class="col-sm-4">
+                <input asp-for="LocationsVM.Locations.Adress" class="form-control" />
+            </div>
+            <span asp-validation-for="LocationsVM.Locations.Adress" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="LocationsVM.Locations.Latitude" class="custom-label"></label>
+            </div>
+            <div class="col-sm-4">
+                <input asp-for="LocationsVM.Locations.Latitude" class="form-control" />
+            </div>
+            <span asp-validation-for="LocationsVM.Locations.Latitude" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="LocationsVM.Locations.Longitude" class="custom-label"></label>
+            </div>
+            <div class="col-sm-4">
+                <input asp-for="LocationsVM.Locations.Longitude" class="form-control" />
+            </div>
+            <span asp-validation-for="LocationsVM.Locations.Longitude" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="LocationsVM.Locations.CategoryId" class="custom-label"></label>
+            </div>
+            <div class="col-sm-4">
+                <select asp-for="LocationsVM.Locations.CategoryId" asp-items="Model.LocationsVM.Categories.ToSelectListItem(Model.LocationsVM.Locations.CategoryId)" class="form-control"></select>
+            </div>
+
+            <span asp-validation-for="LocationsVM.Locations.Category.Name" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Update" class="btn btn-sm btn-primary" />
+            <a asp-page="Index" class="btn btn-sm btn-success">Back to list</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

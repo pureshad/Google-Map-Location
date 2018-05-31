@@ -1,0 +1,116 @@
+﻿@page
+@model MyLocation002.Pages.Locations.CreateModel
+@using MyLocation002.Extentions
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2 class="col-sm-offset-5">Create New Location</h2>
+
+
+
+<form method="post">
+    <div class="form-border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="LocationsVM.Locations.Name" class="custom-label"></label>
+            </div>
+            <div class="col-sm-4">
+                <input asp-for="LocationsVM.Locations.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="LocationsVM.Locations.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="LocationsVM.Locations.Adress" class="custom-label"></label>
+            </div>
+            <div class="col-sm-4">
+                <input asp-for="LocationsVM.Locations.Adress" class="form-control" />
+            </div>
+            <span asp-validation-for="LocationsVM.Locations.Adress" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="LocationsVM.Locations.CategoryId" class="custom-label"></label>
+            </div>
+            <div class="col-sm-4">
+                <select asp-for="LocationsVM.Locations.CategoryId" asp-items="Model.LocationsVM.Categories.ToSelectListItem(Model.LocationsVM.Locations.CategoryId)" class="form-control"></select>
+            </div>
+        </div>
+
+        <br />
+        <div class="form-group">
+            <button type="submit" asp-page-handler="FatchCordinates" value="Get Locations" class="btn btn-info">Get Locations</button>
+        </div>
+    </div>
+    <hr />
+    <div class="form-border">
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="LocationsVM.Locations.Latitude" class="custom-label"></label>
+            </div>
+            <div class="col-sm-4">
+                @if (Model.LocationsVM.Locations.Longitude != null)
+                {
+                    <input asp-for="LocationsVM.Locations.Latitude" value="@Model.LocationsVM.Locations.Latitude" class="form-control" />
+                }
+                else
+                {
+                    <input asp-for="LocationsVM.Locations.Latitude" disabled value="@Model.LocationsVM.Locations.Latitude" class="form-control" />
+
+                }
+            </div>
+
+            @if (Model.LocationsVM.Locations.Latitude == null && Model.LocationsVM.Locations.Longitude == null)
+            {
+                <span asp-validation-for="LocationsVM.Locations.Latitude" class="text-danger"></span>
+            }
+
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label asp-for="LocationsVM.Locations.Longitude" class="custom-label"></label>
+            </div>
+            <div class="col-sm-4">
+
+                @if (Model.LocationsVM.Locations.Latitude != null)
+                {
+                    <input asp-for="LocationsVM.Locations.Longitude" value="@Model.LocationsVM.Locations.Longitude" hidden class="form-control" />
+                }
+                else
+                {
+                    <input asp-for="LocationsVM.Locations.Longitude" disabled value="@Model.LocationsVM.Locations.Longitude" hidden class="form-control" />
+                }
+
+            </div>
+
+            @if (Model.LocationsVM.Locations.Latitude == null && Model.LocationsVM.Locations.Longitude == null)
+            {
+                <span asp-validation-for="LocationsVM.Locations.Longitude" hidden class="text-danger"></span>
+            }
+
+        </div>
+        <div class="form-group">
+
+            @if (Model.LocationsVM.Locations.Latitude != null && Model.LocationsVM.Locations.Longitude != null)
+            {
+                <input type="submit" asp-page-handler="create" value="Create" class="btn btn-success" />
+            }
+            else
+            {
+                <input type="submit" disabled asp-page-handler="create" value="Create" class="btn btn-success" />
+            }
+
+            <a asp-page="Index" class="btn btn-primary">Back to list</a>
+
+        </div>
+        <hr />
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
