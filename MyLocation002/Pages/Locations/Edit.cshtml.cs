@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MyLocation002.Data;
-using MyLocation002.Data.Models;
 using MyLocation002.ViewModel;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MyLocation002.Pages.Locations
 {
